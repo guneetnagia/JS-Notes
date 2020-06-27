@@ -1,0 +1,28 @@
+bind() method returns a new function, when invoked, "this" sets to specific value.
+
+const user{
+	name: 'guneet',
+	getName: function(){
+		alert(this.name);
+	}
+}
+
+
+user.getName() // guneet
+
+Simple enough, But let's run a practicle example
+
+setTimeout(user.getName, 5000);
+
+// undefined, after 5 seconds
+
+Imagine, above line as,
+setTimeout(function(){
+		alert(this.name);
+	}, 5000);
+
+When a function is passed to another function as callback, "this" value is lost.
+
+Resolve,bind user.getName to user object
+
+setTimeout(user.getName.bind(user), 5000);
